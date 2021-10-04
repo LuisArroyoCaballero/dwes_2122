@@ -10,7 +10,7 @@ public class Main {
 		System.out.println("LISTA DE PAGOS");
 		System.out.println(new PaymentDAOImp().getPaymentList());
 		System.out.println("-----------------------------");
-		new PaymentDAOImp().createPayment(new Payment(103, "PT550181", "2004-02-29", 1200));
+		new PaymentDAOImp().createPayment(new Payment(103, "AB661579", "2004-02-29", 1200));
 		System.out.println(new PaymentDAOImp().getPaymentList());
 		
 		ConexionDB.close();
