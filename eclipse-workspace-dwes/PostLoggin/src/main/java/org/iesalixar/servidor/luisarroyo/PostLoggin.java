@@ -35,6 +35,12 @@ public class PostLoggin extends HttpServlet {
 		// Muestro un formulario para recoger nombre y apellidos del usuario
 		PrintWriter out = response.getWriter();
 
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
+		
+		String usuario = request.getParameter("usuario");
+		String password = request.getParameter("password");
+
 		out.println("<html>");
 		out.println("<head><title>Ejemplo de gestión de peticiones POST desde el Servlet</title><head>");
 		out.println("<body>");
@@ -43,11 +49,14 @@ public class PostLoggin extends HttpServlet {
 				"<p>El formulario se mostrará la primera vez cuando se haya realizado una petición GET al servlet</p>");
 
 		out.println("<form method=\"post\">");
-		out.println("<label for=\"nombre\">Nombre:</label><input id=\"nombre\" type=\"text\" name=\"nombre\"><br>");
+		out.println("<label for=\"nombre\">Usuario:</label><input id=\"usuario\" type=\"text\" name=\"usuario\"><br>");
 		out.println(
-				"<label for=\"apellidos\">Apellidos:</label><input id=\"apellidos\" type=\"text\" name=\"apellidos\"><br>");
+				"<label for=\"apellidos\">Password:</label><input id=\"password\" type=\"text\" name=\"password\"><br>");
 		out.println("<button type=\"submit\" name=\"submit\">Enviar</button>");
 		out.println("</form>");
+		if (usuario != null && password != null && !usuario.equals("admin") && !password.equals("admin")) {
+			out.print("<h1 style=\"color:  red;\"> El usuario y contraseña introducidos son incorrectos </h1>");
+		}
 		out.println("</body></html>");
 
 	}
@@ -62,30 +71,19 @@ public class PostLoggin extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Enumeration paramEnumeration = request.getParameterNames();
 
-		if (!paramEnumeration.hasMoreElements()) {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
 
-			// No hay parámetros en la petición
-			out.println("Estoy en una petición post y no he recibido parámetros");
-			
+		String usuario = request.getParameter("usuario");
+		String password = request.getParameter("password");
+
+		if (usuario.equals("admin") && password.equals("admin")) {
+			out.print("<h1> Bienvenido, su usuario y contraseña son correctos </h1>");
 		} else {
-
-			// Comienzo de la lista de parámetros
-			out.println("<h1>Los datos del formulario son los siguientes</h1>");
-			out.println("<ul>");
-
-			while (paramEnumeration.hasMoreElements()) {
-
-				// Recorro la lista de parámetros (Suponemos que tienen un solo valor para el ejemplo(
-				String param = (String) paramEnumeration.nextElement();
-				out.write("<li>He recibido el parámetro " + param + " con el siguiente valor: "
-						+ request.getParameter(param) + "</li>");
-
-			}
-
-			// Fin de la lista de parámetros
-			out.println("</ul>");
+			
+			doGet(request, response);
 
 		}
-	}
 
+	}
 }
