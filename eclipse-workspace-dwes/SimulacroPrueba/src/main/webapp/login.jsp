@@ -13,7 +13,7 @@
 	</form>
 	<% } else if (!session.isNew()) { %>
 	
-		<a href="Logout"><input type="submit" value="Salir" /></a>
+		<a href="<%= request.getContextPath()+"/Logout" %>"><input type="submit" value="Salir" /></a>
 	
 	<% } %>
 </body>

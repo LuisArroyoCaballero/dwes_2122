@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="barra.jsp"></jsp:include>
 	<form method="post">
 		<p>
 			<label for="name">Nombre: </label>
@@ -22,10 +23,10 @@
 		</p>
 		<p>
 			<span>Seleccione su curso:</span>
-			<input type="radio" name="curso" required/>
-			<label for="curso" >Primero</label>
-			<input type="radio" name="curso" />
-			<label for="curso" >Segundo</label>
+			<input type="radio" name="curso" value="1ºDAW" checked/>
+			<label for="curso" >Primero de DAW</label>
+			<input type="radio" name="curso" value="2ºDAW" />
+			<label for="curso" >Segundo de DAW</label>
 		</p>
 		<p>
 			<select name="select" multiple required>
@@ -38,7 +39,7 @@
 			</select>
 		</p>
 		<p>
-			<input type="submit" name="matricula" value="Terminar">
+			<input type="submit" name="matricula" value="Matricular">
 		</p>
 		
 	</form>
