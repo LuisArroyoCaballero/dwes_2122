@@ -1,6 +1,8 @@
 package org.iesalixar.servidor.model;
 
-public class Reserva {
+import java.io.Serializable;
+
+public class Reserva implements Serializable{
 	private String fechaInicio;
 	private String fechaFin;
 	private String numeroPersonas;
