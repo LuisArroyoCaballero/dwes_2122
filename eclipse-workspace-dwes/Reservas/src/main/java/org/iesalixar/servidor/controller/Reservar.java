@@ -50,8 +50,7 @@ public class Reservar extends HttpServlet {
 					request.getParameter("fechaInicio") != null &&
 					request.getParameter("fechaFin") != null &&
 					request.getParameter("numeroPersonas") != null &&
-					request.getParameter("reservar") != null &&
-					request.getParameter("reservar").equals("RESERVAR")
+					request.getParameter("reservar") != null
 					) {
 				
 				String fechaInicio = (String) request.getParameter("fechaInicio");

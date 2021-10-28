@@ -52,8 +52,7 @@ public class Inicio extends HttpServlet {
 			String password = request.getParameter("password");
 			String confirmPassword = request.getParameter("confirmPassword");
 			if (
-					button != null 
-					&& button.equals("REGISTRARSE" ) &&
+					button != null &&
 					password != null &&
 					confirmPassword != null &&
 					PASSWORD_PATTERN.matcher(request.getParameter("password")).matches() &&
