@@ -1,0 +1,4 @@
+docker run -d -it --name bbdd -p 3336:3306 -e MYSQL_ROOT_PASSWORD=XXXXX mariadb
+
+COMANDO INICIAR myCli:
+myCli -p root -u 3336(puerto) (LUEGO PIDE LA CONTRASEÑA)
