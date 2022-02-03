@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Página de Inicio</title>
+</head>
+<body>
+	<ul>
+		<li><a th:href="@{/}">Inicio</li>
+		<li><a th:href="@{/servicios}">Servicios</a></li>
+		<li><a th:href="@{/producto}">Producto</a></li>
+		<li><a th:href="@{/sobreNosotros}">Sobre Nosotros</a></li>
+	</ul>
+	<footer th:replace="fragments/footer::footer(title='Footer Inicio')"></footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Formulario Simple</h1>
+	<div th:if="${matricula.nombreMatricula == null}">
+		<form th:action="@{/forms/matriculaForm}" th:object="${matricula}" method="post">
+			<label for="nombreMatricula">Nombre: </label><br>
+			<input type="text" id="nombreMatricula" placeholder="Nombre" th:field="*{nombreMatricula}" required><br> 
+			<label for="apellidoMatricula">Apellido: </label><br>
+			<input type="text" id="apellidoMatricula" placeholder="Apellido" th:field="*{apellidoMatricula}" required><br>
+		</form>
+	</div>
+</body>
+</html>

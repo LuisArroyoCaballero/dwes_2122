@@ -1,0 +1,9 @@
+DEPENDENCIAS SPRING:
+
+- Spring Boot DevTools
+
+- Spring Web
+
+- Spring Sessions
+
+- Thymeleaf
