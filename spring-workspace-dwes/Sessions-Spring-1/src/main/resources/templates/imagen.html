@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<img alt="imagen_tablet" src="/img/tamano-redes-blog-655x470.png">
+	<div><a th:href=@{/home/admin}>Volver a la zona de Administrador</a></div>
+	<div th:if="${session.role == 'admin'}"><a th:href=@{/home/user}>Volver a la zona de Usuario</a></div>
+</body>
+</html>

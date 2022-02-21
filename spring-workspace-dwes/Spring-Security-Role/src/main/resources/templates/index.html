@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>INDEX</h1>
+	<a sec:authorize="hasRole('admin')" th:href="@{/admin}">Administrador</a>
+	<a sec:authorize="hasRole('user')" th:href="@{/user}">Usuario</a>
+	<a sec:authorize="!isAuthenticated()" th:href="@{/login}">Log In</a>
+	<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log Out</a>
+</body>
+</html>

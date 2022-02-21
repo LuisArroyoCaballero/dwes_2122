@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Grados')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-8">
+				<h1><a th:href="@{/grados/addGrado}">Añadir Grado</a></h1>
+				<table class="table table-stripped table-hover">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Asignaturas</th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="a : ${grados}">
+					 	<td th:text="${a.getId()}"></td>
+					 	<td th:text="${a.getNombre()}"></td>
+					 	<td>
+					 		<a th:href="@{'/grados/asignaturas?codigo='+${a.getId()}}" style="text-decoration: none">+</a>
+					 	</td>
+					 </tr>					
+					</tbody>
+				</table>
+				<h1><a th:href="@{/grados/addGrado}">Añadir Grado</a></h1>
+			</div>
+
+			<footer th:replace="fragments/parts::footer(info='menu.products')"></footer>
+		</div>
+	</div>
+</body>
+</html>

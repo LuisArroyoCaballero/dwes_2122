@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<div th:if="${user.userName == null}" th:replace="forms/logForm"></div>
+</body>
+</html>

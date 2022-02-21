@@ -1,0 +1,10 @@
+<div style="width: 12%">
+	<form th:action="@{/}" th:object="${user}" method="post">
+		<label for="userName">Usuario: </label> <br>
+		<input type="text" id="userName" name="userName" placeholder="Nombre de usuario" th:field="*{userName}" /> <br>
+		<label for="userPassword">Password: </label> <br>
+		<input type="text" id="userPassword" name="userPassword" th:field="*{userPassword}"/> <br>
+		<hr>
+		<button type="submit">Enviar</button>
+	</form>
+</div>

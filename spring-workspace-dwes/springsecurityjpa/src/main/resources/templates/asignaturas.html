@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Departments')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-8">
+				<table class="table table-stripped table-hover">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Creditos</th>
+						<th>Curso</th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="d : ${asignaturas}">
+					 	<td th:text="${d.getId()}"></td>
+					 	<td th:text="${d.getNombre()}"></td>
+					 	<td th:text="${d.getCreditos()}"></td>
+					 	<td th:text="${d.getCurso()}"></td>
+					 </tr>					
+					</tbody>
+				</table>
+			</div>
+
+			<footer th:replace="fragments/parts::footer(info='menu.products')"></footer>
+		</div>
+	</div>
+</body>
+</html>
