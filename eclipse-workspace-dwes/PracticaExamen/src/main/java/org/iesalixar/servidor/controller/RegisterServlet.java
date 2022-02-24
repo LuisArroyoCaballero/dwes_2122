@@ -57,7 +57,7 @@ public class RegisterServlet extends HttpServlet {
 				
 				password = PasswordHashGenerator.hashPassword(password);
 				
-				Usuario user = new Usuario(usuario, password, email, firstName, lastName, "usuario");
+				Usuario user = new Usuario(usuario, email, password, firstName, lastName, "usuario");
 				
 				userDAO.registerUsuario(user);
 			}
