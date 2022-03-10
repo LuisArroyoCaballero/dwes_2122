@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/bootstrap::head(title='Grados')"></head>
+<head th:replace="fragments/bootstrap::head(title='Profesores')"></head>
 <body>
 	<div class="container mt-5">
 		<div class="row mt-5 justify-content-center">
 			<header th:insert="fragments/parts::menu"></header>
 			<div class="col-8">
-				<h1><a th:href="@{/grados/addGrado}">Añadir Grado</a></h1>
+				<h1><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/profesores/addProfesor}">Añadir Profesor</a></h1>
 				<p th:text="${error}" style="color:red"></p>
 				<table class="table table-stripped table-hover">
+					<h1>Profesores de la Universidad</h1>
 					<thead class="table-light">
 					<tr>
 						<th>ID</th>
+						<th>Nif</th>
 						<th>Nombre</th>
-						<th>Asignaturas</th>
+						<th>Apellidos1</th>
+						<th>Departamento</th>
 					</tr>
 					</thead>					
 					<tbody>
-					 <tr th:each="a : ${grados}">
+					 <tr th:each="a : ${profesores}">
 					 	<td th:text="${a.getId()}"></td>
+					 	<td th:text="${a.getNif()}"></td>
 					 	<td th:text="${a.getNombre()}"></td>
+					 	<td th:text="${a.getApellido1()}"></td>
+					 	<td th:text="${a.getDepartamento().getNombre()}"></td>
 					 	<td>
-					 		<a th:href="@{'/grados/asignaturas?codigo='+${a.getId()}}" style="text-decoration: none">+</a>
+					 		<a th:href="@{'/profesores/asignaturas?codigo='+${a.getId()}}" style="text-decoration: none">+</a>
 					 	</td>
 					 </tr>					
 					</tbody>
 				</table>
-				<h1><a th:href="@{/grados/addGrado}">Añadir Grado</a></h1>
+				<h1><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/profesores/addProfesor}">Añadir Profesor</a></h1>
 			</div>
 
 			<footer th:replace="fragments/parts::footer(info='menu.products')"></footer>

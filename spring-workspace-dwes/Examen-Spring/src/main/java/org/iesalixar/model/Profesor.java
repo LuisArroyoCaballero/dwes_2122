@@ -1,7 +1,9 @@
 package org.iesalixar.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,51 +12,59 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table (name="profesor")
-public class Profesor {
+@Table(name="profesor")
+public class Profesor implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true, nullable=true)
+	@Column(nullable=true)
 	private String nif;
 	
-	@Column(nullable=false)
+	@Column
 	private String nombre;
 	
-	@Column(nullable=false)
+	@Column
 	private String apellido1;
 	
-	@Column(nullable=true)
+	@Column
 	private String apellido2;
 	
-	@Column(nullable=false)
+	@Column
 	private String ciudad;
 	
-	@Column(nullable=false)
+	@Column
 	private String direccion;
 	
 	@Column(nullable=true)
 	private String telefono;
 	
-	@Column(nullable=false)
+	@Column(name="fecha_nacimiento")
 	@Temporal(TemporalType.DATE)
-	private Date fecha_nacimiento;
+	private Date fechaNacimiento;
 	
-	@Column(nullable=false)
+	@Column
 	private String sexo;
+	
+	@ManyToOne
+	@JoinColumn(name="id_departamento")
+	Departamento departamento;
 	
 	@OneToMany(mappedBy="profesor", cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<Asignatura> asignaturas = new HashSet<Asignatura>();
-
+	
+	
 	public Profesor() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -121,12 +131,13 @@ public class Profesor {
 		this.telefono = telefono;
 	}
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public String getSexo() {
@@ -137,6 +148,14 @@ public class Profesor {
 		this.sexo = sexo;
 	}
 
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+	
 	public Set<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
@@ -144,18 +163,38 @@ public class Profesor {
 	public void setAsignaturas(Set<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido1, apellido2, ciudad, departamento, direccion, fechaNacimiento, id, nif, nombre,
+				sexo, telefono);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profesor other = (Profesor) obj;
+		return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2)
+				&& Objects.equals(ciudad, other.ciudad) && Objects.equals(departamento, other.departamento)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(fechaNacimiento, other.fechaNacimiento)
+				&& Objects.equals(id, other.id) && Objects.equals(nif, other.nif)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(sexo, other.sexo)
+				&& Objects.equals(telefono, other.telefono);
+	}
 
 	@Override
 	public String toString() {
-		return nombre +" "+ apellido1 +" "+ apellido2 ;
+		return "Profesor [id=" + id + ", nif=" + nif + ", nombre=" + nombre + ", apellido1=" + apellido1
+				+ ", apellido2=" + apellido2 + ", ciudad=" + ciudad + ", direccion=" + direccion + ", telefono="
+				+ telefono + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", departamento="
+				+ departamento + "]";
 	}
-
-	public void setDepartamento(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 	
 	
 	

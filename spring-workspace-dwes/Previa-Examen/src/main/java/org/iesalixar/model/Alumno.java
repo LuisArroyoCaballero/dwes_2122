@@ -1,7 +1,9 @@
 package org.iesalixar.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,14 +18,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table (name="profesor")
-public class Profesor {
+@Table(name="alumno")
+public class Alumno implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true, nullable=true)
+	@Column(unique=true,length=9,nullable=true)
 	private String nif;
 	
 	@Column(nullable=false)
@@ -40,21 +42,22 @@ public class Profesor {
 	
 	@Column(nullable=false)
 	private String direccion;
-	
+		
 	@Column(nullable=true)
 	private String telefono;
 	
-	@Column(nullable=false)
+	@Column(name="fecha_nacimiento",nullable=false)
 	@Temporal(TemporalType.DATE)
-	private Date fecha_nacimiento;
+	private Date fechaNacimiento;
 	
-	@Column(nullable=false)
+	@Column(nullable=false,length=1)
 	private String sexo;
 	
-	@OneToMany(mappedBy="profesor", cascade=CascadeType.ALL, orphanRemoval=true)
-	private Set<Asignatura> asignaturas = new HashSet<Asignatura>();
-
-	public Profesor() {
+	@OneToMany(mappedBy="alumno",cascade=CascadeType.ALL, orphanRemoval=true)
+	private Set<AlumnoAsignatura> alumnoAsignaturas = new HashSet<>();
+	
+	public Alumno() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -121,12 +124,12 @@ public class Profesor {
 		this.telefono = telefono;
 	}
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public String getSexo() {
@@ -136,28 +139,33 @@ public class Profesor {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	
+	
 
-	public Set<Asignatura> getAsignaturas() {
-		return asignaturas;
+	public Set<AlumnoAsignatura> getAlumnoAsignaturas() {
+		return alumnoAsignaturas;
 	}
 
-	public void setAsignaturas(Set<Asignatura> asignaturas) {
-		this.asignaturas = asignaturas;
+	public void setAlumnoAsignaturas(Set<AlumnoAsignatura> alumnoAsignatura) {
+		this.alumnoAsignaturas = alumnoAsignatura;
 	}
 
 	@Override
-	public String toString() {
-		return nombre +" "+ apellido1 +" "+ apellido2 ;
+	public int hashCode() {
+		return Objects.hash(id, nif);
 	}
 
-	public void setDepartamento(Object object) {
-		// TODO Auto-generated method stub
-		
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alumno other = (Alumno) obj;
+		return Objects.equals(id, other.id) && Objects.equals(nif, other.nif);
 	}
-	
-	
-	
-	
 	
 	
 }

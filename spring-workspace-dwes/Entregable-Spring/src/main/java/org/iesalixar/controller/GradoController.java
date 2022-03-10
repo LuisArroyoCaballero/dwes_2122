@@ -22,10 +22,13 @@ public class GradoController {
 	GradoServiceImpl gradoService;
 
 	@GetMapping("/")
-	public String grados(Model model) {
+	public String grados(@RequestParam(required = false, name = "error") String error, Model model) {
 
 		List<Grado> grados = gradoService.getAllGrados();
 		model.addAttribute("grados", grados);
+		if (error != null) {
+			model.addAttribute("error", "Error al visualizar las asignaturas");
+		}
 
 		return "grados";
 
@@ -35,7 +38,8 @@ public class GradoController {
 	public String asignaturas(@RequestParam(required = false, name = "codigo") String codigo, Model model) {
 
 		if (codigo == null) {
-			return "redirect:/grados/";
+			model.addAttribute("error", "Error a la hora de ver las asignaturas");
+			return "redirect:/grados/?error=Error";
 		}
 
 		Optional<Grado> grado = gradoService.findGradoById(Long.parseLong(codigo));
